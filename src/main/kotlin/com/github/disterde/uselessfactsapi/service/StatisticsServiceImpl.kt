@@ -2,7 +2,7 @@ package com.github.disterde.uselessfactsapi.service
 
 import com.github.disterde.uselessfactsapi.component.cache.Cache
 import com.github.disterde.uselessfactsapi.component.cache.CacheImpl
-import com.github.disterde.uselessfactsapi.domain.StatisticResponse
+import com.github.disterde.uselessfactsapi.domain.StatisticsResponse
 import java.util.concurrent.atomic.AtomicInteger
 
 class StatisticsServiceImpl(
@@ -17,7 +17,7 @@ class StatisticsServiceImpl(
         cache.getBy(url).incrementAndGet()
     }
 
-    override fun getStatistics(): Collection<StatisticResponse> {
-        return cache.getEntries().map { StatisticResponse(it.key, it.value.get()) }
+    override fun getStatistics(): Collection<StatisticsResponse> {
+        return cache.getEntries().map { StatisticsResponse(it.key, it.value.get()) }
     }
 }
