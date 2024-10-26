@@ -12,6 +12,6 @@ class UrlShortenerImpl : UrlShortener {
     }
 
     companion object {
-        private const val SHORT_URL_BASE = "facts"
+        private const val SHORT_URL_BASE = "/facts"
     }
 }

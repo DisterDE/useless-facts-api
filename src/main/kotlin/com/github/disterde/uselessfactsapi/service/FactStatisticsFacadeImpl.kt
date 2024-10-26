@@ -13,7 +13,7 @@ class FactStatisticsFacadeImpl(
 
     override suspend fun getRandomFact(): ShortenedUrlFact {
         val url = shortener.getShortUrl()
-        val fact = factService.getRandomFact()
+        val fact = factService.getRandomFact(url)
         return fact.toShortenedResponse(url).also {
             statisticsService.save(url)
         }

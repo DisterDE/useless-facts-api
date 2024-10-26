@@ -10,8 +10,8 @@ class FactServiceImpl(
     private val cache: Cache<String, Fact> = CacheImpl()
 ) : FactService {
 
-    override suspend fun getRandomFact(): Fact {
-        return client.getFact()
+    override suspend fun getRandomFact(url: String): Fact {
+        return client.getFact().also { cache.save(url, it) }
     }
 
     override suspend fun getFactBy(shortenedUrl: String): Fact {
