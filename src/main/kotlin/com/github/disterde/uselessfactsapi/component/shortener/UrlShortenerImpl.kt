@@ -1,6 +1,6 @@
 package com.github.disterde.uselessfactsapi.component.shortener
 
-import com.github.disterde.uselessfactsapi.constants.UrlConstants.SHORT_URL_BASE
+import com.github.disterde.uselessfactsapi.constants.UrlConstants.FACTS_BASE_PATH
 import org.apache.commons.lang3.RandomStringUtils
 
 class UrlShortenerImpl : UrlShortener {
@@ -9,6 +9,6 @@ class UrlShortenerImpl : UrlShortener {
 
     override fun getShortUrl(): String {
         val shortenedUrl = random.nextAlphanumeric(5)
-        return "$SHORT_URL_BASE/$shortenedUrl"
+        return "$FACTS_BASE_PATH/$shortenedUrl"
     }
 }
