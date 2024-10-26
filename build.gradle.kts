@@ -23,6 +23,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.apache.commons:commons-lang3:3.17.0")
     implementation("io.ktor:ktor-server-cio")
     implementation("io.ktor:ktor-server-core")
     implementation("io.ktor:ktor-client-cio")
