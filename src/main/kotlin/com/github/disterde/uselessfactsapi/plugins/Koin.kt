@@ -1,5 +1,7 @@
 package com.github.disterde.uselessfactsapi.plugins
 
+import com.github.disterde.uselessfactsapi.component.cache.Cache
+import com.github.disterde.uselessfactsapi.component.cache.CacheImpl
 import com.github.disterde.uselessfactsapi.component.shortener.UrlShortener
 import com.github.disterde.uselessfactsapi.component.shortener.UrlShortenerImpl
 import com.github.disterde.uselessfactsapi.component.web.UselessFactsClient
@@ -29,9 +31,10 @@ fun Application.configureKoin() {
 }
 
 private val services = module {
+    factory<Cache<Any, Any>> { CacheImpl() }
     single<UrlShortener> { UrlShortenerImpl() }
-    single<FactService> { FactServiceImpl(get()) }
-    single<StatisticsService> { StatisticsServiceImpl() }
+    single<FactService> { FactServiceImpl(get(), get()) }
+    single<StatisticsService> { StatisticsServiceImpl(get()) }
     single<UselessFactsClient> { UselessFactsClientImpl(get()) }
     single<FactStatisticsFacade> { FactStatisticsFacadeImpl(get(), get(), get()) }
     single<HttpClient> {

@@ -1,7 +1,6 @@
 package com.github.disterde.uselessfactsapi.service
 
 import com.github.disterde.uselessfactsapi.component.cache.Cache
-import com.github.disterde.uselessfactsapi.component.cache.CacheImpl
 import com.github.disterde.uselessfactsapi.domain.StatisticsResponse
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -12,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger
  * @property cache A cache system for storing access counts of URLs.
  */
 class StatisticsServiceImpl(
-    private val cache: Cache<String, AtomicInteger> = CacheImpl()
+    private val cache: Cache<String, AtomicInteger>
 ) : StatisticsService {
 
     /**

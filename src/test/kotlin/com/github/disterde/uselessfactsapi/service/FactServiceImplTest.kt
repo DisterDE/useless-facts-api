@@ -21,14 +21,15 @@ class FactServiceImplTest {
         coEvery { client.getFact() } returns FACT
         every { cache.save(URL, any()) } just runs
 
-        service.getRandomFact(URL)
+        val fact = service.getRandomFact(URL)
 
         coVerify { client.getFact() }
         verify { cache.save(URL, any()) }
+        assertEquals(FACT, fact)
     }
 
     @Test
-    fun `should retrieve a fact by id`() = runTest {
+    fun `should retrieve a fact by id`() {
         every { cache.getBy(URL) } returns FACT
 
         val result = service.getFactBy(URL)
@@ -37,14 +38,24 @@ class FactServiceImplTest {
     }
 
     @Test
-    fun `should throw exception when element is not found in cache`() = runTest {
+    fun `should throw exception when element is not found in cache`() {
         every { cache.getBy(URL) } throws NoElementInCacheException(URL)
 
         assertFailsWith<NoElementInCacheException> { service.getFactBy(URL) }
     }
 
+    @Test
+    fun `should return all facts from cache`() = runTest {
+        every { cache.getAll() } returns CACHED_FACTS
+
+        val result = service.getCachedFacts()
+
+        assertEquals(result, CACHED_FACTS)
+    }
+
     companion object {
         private const val URL = "test"
         private val FACT = Fact("123", "456")
+        private val CACHED_FACTS = listOf(Fact("123", "456"))
     }
 }

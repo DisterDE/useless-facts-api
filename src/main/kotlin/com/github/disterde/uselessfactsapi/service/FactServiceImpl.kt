@@ -1,7 +1,6 @@
 package com.github.disterde.uselessfactsapi.service
 
 import com.github.disterde.uselessfactsapi.component.cache.Cache
-import com.github.disterde.uselessfactsapi.component.cache.CacheImpl
 import com.github.disterde.uselessfactsapi.component.web.UselessFactsClient
 import com.github.disterde.uselessfactsapi.domain.Fact
 
@@ -15,7 +14,7 @@ import com.github.disterde.uselessfactsapi.domain.Fact
  */
 class FactServiceImpl(
     private val client: UselessFactsClient,
-    private val cache: Cache<String, Fact> = CacheImpl()
+    private val cache: Cache<String, Fact>
 ) : FactService {
 
     /**
