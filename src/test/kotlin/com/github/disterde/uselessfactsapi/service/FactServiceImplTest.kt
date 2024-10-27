@@ -18,12 +18,12 @@ class FactServiceImplTest {
 
     @Test
     fun `should retrieve a random fact`() = runTest {
-        coEvery { client.getFact() } returns FACT
+        coEvery { client.getRandomFact() } returns FACT
         every { cache.save(URL, any()) } just runs
 
         val fact = service.getRandomFact(URL)
 
-        coVerify { client.getFact() }
+        coVerify { client.getRandomFact() }
         verify { cache.save(URL, any()) }
         assertEquals(FACT, fact)
     }

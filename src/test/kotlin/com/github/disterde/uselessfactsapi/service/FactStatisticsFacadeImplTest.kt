@@ -47,15 +47,13 @@ class FactStatisticsFacadeImplTest {
 
         val result = sut.getCachedFacts()
 
-        assertEquals(result, CACHED_FACT_RESPONSE)
+        assertEquals(result, CACHED_FACTS)
     }
 
     companion object {
         private const val URL = "test"
         private val FACT = Fact("123", "456")
-        private val FACT_RESPONSE = FACT.toResponse()
         private val SHORTENED_URL_FACT = ShortenedUrlFact("123", URL)
         private val CACHED_FACTS = listOf(FACT)
-        private val CACHED_FACT_RESPONSE = listOf(FACT_RESPONSE)
     }
 }

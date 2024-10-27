@@ -29,7 +29,7 @@ class UselessFactsClientImplTest {
 
     @Test
     fun `should call http client when retrieving a random fact`() = runTest {
-        val result = uselessFactsClient.getFact()
+        val result = uselessFactsClient.getRandomFact()
         assertEquals(result, FACT)
     }
 
