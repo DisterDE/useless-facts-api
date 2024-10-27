@@ -9,7 +9,7 @@ import io.ktor.server.routing.*
 /**
  * Configures the routing for facts-related API endpoints.
  *
- * This method sets up various routes under the base path defined by `FACTS_BASE_PATH`:
+ * This method sets up various routes under the "/facts" base path:
  * - `GET /facts` - Retrieves cached facts.
  * - `POST /facts` - Retrieves a random fact.
  * - `GET /facts/{shortenedUrl}` - Retrieves a specific fact by its shortened URL.
