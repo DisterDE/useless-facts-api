@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.github.disterde"
-version = "0.0.1"
+version = "1.0.0"
 
 application {
     mainClass.set("com.github.disterde.uselessfactsapi.ApplicationKt")
@@ -41,4 +41,8 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+}
+
+kotlin {
+    jvmToolchain(21)
 }
