@@ -3,20 +3,11 @@ package com.github.disterde.uselessfactsapi.component.web
 import com.github.disterde.uselessfactsapi.domain.Fact
 import io.ktor.client.*
 import io.ktor.client.call.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
-import io.ktor.serialization.kotlinx.json.*
-import kotlinx.serialization.json.Json
 
-class UselessFactsClientImpl : UselessFactsClient {
-
-    private val client = HttpClient(CIO) {
-        expectSuccess = true
-        install(ContentNegotiation) {
-            json(Json { ignoreUnknownKeys = true })
-        }
-    }
+class UselessFactsClientImpl(
+    private val client: HttpClient
+) : UselessFactsClient {
 
     override suspend fun getFact(): Fact {
         return client.get(RANDOM_FACT_URL).body()

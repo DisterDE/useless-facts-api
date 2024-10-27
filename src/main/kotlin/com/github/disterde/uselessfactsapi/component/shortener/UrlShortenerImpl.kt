@@ -8,7 +8,11 @@ class UrlShortenerImpl : UrlShortener {
     private val random = RandomStringUtils.secureStrong()
 
     override fun getShortUrl(): String {
-        val shortenedUrl = random.nextAlphanumeric(5)
+        val shortenedUrl = random.nextAlphanumeric(LINK_LENGTH)
         return "$FACTS_BASE_PATH/$shortenedUrl"
+    }
+
+    companion object {
+        private const val LINK_LENGTH = 5
     }
 }
