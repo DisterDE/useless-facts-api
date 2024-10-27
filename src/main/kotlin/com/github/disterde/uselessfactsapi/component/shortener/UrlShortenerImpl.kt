@@ -37,6 +37,6 @@ class UrlShortenerImpl : UrlShortener {
          * This constant is used when generating a shortened URL to determine the size of
          * the random string appended to the base URL, ensuring a fixed and predictable length.
          */
-        private const val LINK_LENGTH = 5
+        const val LINK_LENGTH = 5
     }
 }
