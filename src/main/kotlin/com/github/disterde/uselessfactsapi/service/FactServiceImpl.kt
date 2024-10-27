@@ -35,7 +35,7 @@ class FactServiceImpl(
      * @param shortenedUrl The shortened URL to retrieve the associated fact.
      * @return A `Fact` object containing the factual information and its associated permanent link.
      */
-    override suspend fun getFactBy(shortenedUrl: String): Fact {
+    override fun getFactBy(shortenedUrl: String): Fact {
         return cache.getBy(shortenedUrl)
     }
 

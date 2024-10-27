@@ -20,7 +20,7 @@ interface FactService {
      * @param shortenedUrl The shortened URL to retrieve the associated fact.
      * @return A `Fact` object containing the factual information and its associated permanent link.
      */
-    suspend fun getFactBy(shortenedUrl: String): Fact
+    fun getFactBy(shortenedUrl: String): Fact
 
     /**
      * Retrieves all facts that are currently stored in the cache.
