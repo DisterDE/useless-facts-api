@@ -1,0 +1,163 @@
+openapi: "3.1.0"
+info:
+  title: "Useless Facts API"
+  summary: "Get random facts from the external API"
+  version: "1.0.0"
+  contact:
+    name: "Kirill Kachalov"
+    url: "https://github.com/DisterDE"
+servers:
+  - url: "http://localhost:8080"
+tags:
+  - name: "admin"
+    description: "Secured admin endpoints"
+  - name: "facts"
+    description: "Facts endpoints"
+paths:
+  /admin/statistics:
+    get:
+      tags:
+        - "admin"
+      summary: "Get visit statistics for random facts"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/StatisticsResponse"
+        "401":
+          description: "Unauthorized"
+      security:
+        - basicAuth: [ ]
+  /facts:
+    get:
+      tags:
+        - "facts"
+      summary: "Get all cached facts"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/FactResponse"
+    post:
+      tags:
+        - "facts"
+      summary: "Get a new random fact"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ShortenedUrlFact"
+  /facts/{shortenedUrl}:
+    get:
+      tags:
+        - "facts"
+      summary: "Get a fact by shortened url"
+      parameters:
+        - name: "shortenedUrl"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Fact"
+        "404":
+          description: "Not found by shortened url"
+  /facts/{shortenedUrl}/redirect:
+    get:
+      tags:
+        - "facts"
+      summary: "Redirect to the original fact by shortened url"
+      parameters:
+        - name: "shortenedUrl"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ExternalApiFact"
+        "404":
+          description: "Not found by shortened url"
+components:
+  schemas:
+    StatisticsResponse:
+      type: "object"
+      properties:
+        shortened_url:
+          type: "string"
+        access_count:
+          type: "integer"
+          format: "int32"
+      required:
+        - "shortened_url"
+        - "access_count"
+    FactResponse:
+      type: "object"
+      properties:
+        fact:
+          type: "string"
+        original_permalink:
+          type: "string"
+      required:
+        - "fact"
+        - "original_permalink"
+    ShortenedUrlFact:
+      type: "object"
+      properties:
+        original_fact:
+          type: "string"
+        shortened_url:
+          type: "string"
+      required:
+        - "original_fact"
+        - "shortened_url"
+    Fact:
+      type: "object"
+      properties:
+        text:
+          type: "string"
+        permalink:
+          type: "string"
+      required:
+        - "text"
+        - "permalink"
+    ExternalApiFact:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        text:
+          type: "string"
+        source:
+          type: "string"
+        source_url:
+          type: "string"
+          format: "uri"
+        language:
+          type: "string"
+        permalink:
+          type: "string"
+          format: "uri"
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

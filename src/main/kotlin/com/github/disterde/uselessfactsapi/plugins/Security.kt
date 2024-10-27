@@ -1,24 +1,19 @@
 package com.github.disterde.uselessfactsapi.plugins
 
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
 
 fun Application.configureSecurity() {
-//    TODO()
-//    authentication {
-//        form(name = "myauth2") {
-//            userParamName = "user"
-//            passwordParamName = "password"
-//            challenge {
-//                /**/
-//            }
-//        }
-//    }
-//    routing {
-//        authenticate("myauth2") {
-//            get("/protected/route/form") {
-//                val principal = call.principal<UserIdPrincipal>()!!
-//                call.respondText("Hello ${principal.name}")
-//            }
-//        }
-//    }
+    install(Authentication) {
+        basic {
+            realm = "Access to the '/admin' path"
+            validate { credentials ->
+                if (credentials.name == "admin" && credentials.password == "admin") {
+                    UserIdPrincipal(credentials.name)
+                } else {
+                    null
+                }
+            }
+        }
+    }
 }
