@@ -20,13 +20,10 @@ import io.ktor.server.routing.*
 fun Routing.factsRoute(
     facade: FactStatisticsFacade
 ) = route(FACTS_BASE_PATH) {
-    get {
-        call.respond(facade.getCachedFacts())
-    }
 
-    post {
-        call.respond(facade.getRandomFact())
-    }
+    get { call.respond(facade.getCachedFacts()) }
+
+    post { call.respond(facade.getRandomFact()) }
 
     route("/{shortenedUrl}") {
         get {
