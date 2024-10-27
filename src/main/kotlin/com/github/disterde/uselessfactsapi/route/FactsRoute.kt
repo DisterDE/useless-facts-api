@@ -7,6 +7,11 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 /**
+ * Response message used to indicate that a provided path parameter is invalid.
+ */
+private const val INVALID_PATH_PARAM = "Invalid path parameter"
+
+/**
  * Configures the routing for facts-related API endpoints.
  *
  * This method sets up various routes under the "/facts" base path:
@@ -29,14 +34,14 @@ fun Routing.factsRoute(
         get {
             call.parameters["shortenedUrl"]?.let {
                 call.respond(facade.getFactBy("$FACTS_BASE_PATH/$it"))
-            } ?: call.respond(BadRequest, "Invalid path parameter")
+            } ?: call.respond(BadRequest, INVALID_PATH_PARAM)
         }
 
         get("/redirect") {
             call.parameters["shortenedUrl"]?.let {
                 val fact = facade.getFactBy("$FACTS_BASE_PATH/$it")
                 call.respondRedirect(fact.permalink)
-            } ?: call.respond(BadRequest, "Invalid path parameter")
+            } ?: call.respond(BadRequest, INVALID_PATH_PARAM)
         }
     }
 }
