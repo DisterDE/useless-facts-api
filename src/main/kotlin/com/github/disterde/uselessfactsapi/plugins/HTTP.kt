@@ -7,6 +7,7 @@ import com.github.disterde.uselessfactsapi.route.adminRoute
 import com.github.disterde.uselessfactsapi.route.factsRoute
 import com.github.disterde.uselessfactsapi.service.FactStatisticsFacade
 import com.github.disterde.uselessfactsapi.service.StatisticsService
+import io.ktor.client.plugins.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.statuspages.*
@@ -48,6 +49,12 @@ fun Application.configureHttp() {
         }
         exception<ApiException> { call, cause ->
             call.respondText(text = "500: $cause", status = HttpStatusCode.InternalServerError)
+        }
+        exception<ResponseException> { call, cause ->
+            call.respondText(
+                text = "503: ${cause.message}",
+                status = HttpStatusCode.ServiceUnavailable
+            )
         }
     }
 

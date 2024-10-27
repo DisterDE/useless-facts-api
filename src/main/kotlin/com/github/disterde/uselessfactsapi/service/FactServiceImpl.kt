@@ -36,8 +36,7 @@ class FactServiceImpl(
      * @return A `Fact` object containing the factual information and its associated permanent link.
      */
     override suspend fun getFactBy(shortenedUrl: String): Fact {
-        val fact = cache.getBy(shortenedUrl)
-        return client.getFactBy(fact.permalink)
+        return cache.getBy(shortenedUrl)
     }
 
     /**
