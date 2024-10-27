@@ -40,7 +40,7 @@ fun Routing.factsRoute(
         get("/redirect") {
             call.parameters["shortenedUrl"]?.let {
                 val fact = facade.getFactBy("$FACTS_BASE_PATH/$it")
-                call.respondRedirect(fact.permalink)
+                call.respondRedirect(fact.originalPermalink)
             } ?: call.respond(BadRequest, INVALID_PATH_PARAM)
         }
     }
