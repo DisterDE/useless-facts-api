@@ -25,7 +25,7 @@ class FactServiceImpl(
      * @return A `Fact` object containing the random fact and its associated permanent link.
      */
     override suspend fun getRandomFact(shortenedUrl: String): Fact {
-        return client.getFact().also { cache.save(shortenedUrl, it) }
+        return client.getRandomFact().also { cache.save(shortenedUrl, it) }
     }
 
     /**

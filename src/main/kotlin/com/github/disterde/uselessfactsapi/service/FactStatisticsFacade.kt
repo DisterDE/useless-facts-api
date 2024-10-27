@@ -1,7 +1,6 @@
 package com.github.disterde.uselessfactsapi.service
 
 import com.github.disterde.uselessfactsapi.domain.Fact
-import com.github.disterde.uselessfactsapi.domain.FactResponse
 import com.github.disterde.uselessfactsapi.domain.ShortenedUrlFact
 
 /**
@@ -28,7 +27,7 @@ interface FactStatisticsFacade {
     /**
      * Retrieves a collection of cached fact responses.
      *
-     * @return A collection of [FactResponse] objects representing cached facts.
+     * @return A collection of [Fact] objects representing cached facts.
      */
-    fun getCachedFacts(): Collection<FactResponse>
+    fun getCachedFacts(): Collection<Fact>
 }

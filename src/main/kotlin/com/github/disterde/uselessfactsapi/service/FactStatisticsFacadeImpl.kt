@@ -2,7 +2,6 @@ package com.github.disterde.uselessfactsapi.service
 
 import com.github.disterde.uselessfactsapi.component.shortener.UrlShortener
 import com.github.disterde.uselessfactsapi.domain.Fact
-import com.github.disterde.uselessfactsapi.domain.FactResponse
 import com.github.disterde.uselessfactsapi.domain.ShortenedUrlFact
 
 /**
@@ -27,7 +26,7 @@ class FactStatisticsFacadeImpl(
     override suspend fun getRandomFact(): ShortenedUrlFact {
         val url = shortener.getShortUrl()
         val fact = factService.getRandomFact(url)
-        return fact.toShortenedResponse(url).also {
+        return fact.toShortenedUrlFact(url).also {
             statisticsService.save(url)
         }
     }
@@ -48,9 +47,9 @@ class FactStatisticsFacadeImpl(
     /**
      * Retrieves a collection of cached fact responses.
      *
-     * @return A collection of [FactResponse] objects representing cached facts.
+     * @return A collection of [Fact] objects representing cached facts.
      */
-    override fun getCachedFacts(): Collection<FactResponse> {
-        return factService.getCachedFacts().map { it.toResponse() }
+    override fun getCachedFacts(): Collection<Fact> {
+        return factService.getCachedFacts()
     }
 }
