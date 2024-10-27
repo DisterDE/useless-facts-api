@@ -15,6 +15,12 @@ import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
 
+/**
+ * Configures the Koin dependency injection framework for the application.
+ *
+ * This function installs and configures Koin with the SLF4J logger and
+ * specified modules required for the application's services.
+ */
 fun Application.configureKoin() {
     install(Koin) {
         slf4jLogger()

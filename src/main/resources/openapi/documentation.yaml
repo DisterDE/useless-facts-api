@@ -1,7 +1,7 @@
 openapi: "3.1.0"
 info:
   title: "Useless Facts API"
-  summary: "Get random facts from the external API"
+  summary: "This API allows to get random facts from the external API, cache them, provide shortened links and collect access statistics"
   version: "1.0.0"
   contact:
     name: "Kirill Kachalov"
@@ -57,6 +57,8 @@ paths:
             '*/*':
               schema:
                 $ref: "#/components/schemas/ShortenedUrlFact"
+        "500":
+          description: "External API is not available"
   /facts/{shortenedUrl}:
     get:
       tags:

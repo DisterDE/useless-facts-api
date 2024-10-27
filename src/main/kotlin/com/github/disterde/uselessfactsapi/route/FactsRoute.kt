@@ -6,6 +6,17 @@ import io.ktor.http.HttpStatusCode.Companion.BadRequest
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
+/**
+ * Configures the routing for facts-related API endpoints.
+ *
+ * This method sets up various routes under the base path defined by `FACTS_BASE_PATH`:
+ * - `GET /facts` - Retrieves cached facts.
+ * - `POST /facts` - Retrieves a random fact.
+ * - `GET /facts/{shortenedUrl}` - Retrieves a specific fact by its shortened URL.
+ * - `GET /facts/{shortenedUrl}/redirect` - Redirects to the permanent link of a specific fact.
+ *
+ * @param facade An instance of [FactStatisticsFacade] used to handle fact-related operations and data retrieval.
+ */
 fun Routing.factsRoute(
     facade: FactStatisticsFacade
 ) = route(FACTS_BASE_PATH) {
