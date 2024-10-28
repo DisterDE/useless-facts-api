@@ -16,7 +16,7 @@ object UrlConstants {
     /**
      * The base URL for accessing external facts from the Useless Facts API.
      */
-    const val EXTERNAL_FACTS_URL = "https://uselessfacts.jsph.pl/api/v2/facts"
+    private const val EXTERNAL_FACTS_URL = "https://uselessfacts.jsph.pl/api/v2/facts"
 
     /**
      * The URL used to retrieve a random fact in English from the external facts API.

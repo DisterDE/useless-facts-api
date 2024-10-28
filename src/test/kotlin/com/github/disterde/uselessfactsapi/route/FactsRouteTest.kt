@@ -115,7 +115,7 @@ class FactsRouteTest {
             }
         }
 
-        coEvery { facade.getFactBy(SHORTENED_URL) } returns FACT
+        coEvery { facade.getFactBy("$FACTS_BASE_PATH/$SHORTENED_URL") } returns FACT
 
         client.get("$FACTS_BASE_PATH/$SHORTENED_URL").apply {
             assertEquals(HttpStatusCode.OK, status)

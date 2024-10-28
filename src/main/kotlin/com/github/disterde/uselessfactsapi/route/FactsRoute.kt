@@ -2,14 +2,8 @@ package com.github.disterde.uselessfactsapi.route
 
 import com.github.disterde.uselessfactsapi.constants.UrlConstants.FACTS_BASE_PATH
 import com.github.disterde.uselessfactsapi.service.FactStatisticsFacade
-import io.ktor.http.HttpStatusCode.Companion.BadRequest
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-
-/**
- * Response message used to indicate that a provided path parameter is invalid.
- */
-private const val INVALID_PATH_PARAM = "Invalid path parameter"
 
 /**
  * Configures the routing for facts-related API endpoints.
@@ -32,16 +26,15 @@ fun Routing.factsRoute(
 
     route("/{shortenedUrl}") {
         get {
-            call.parameters["shortenedUrl"]?.let {
-                call.respond(facade.getFactBy("$FACTS_BASE_PATH/$it"))
-            } ?: call.respond(BadRequest, INVALID_PATH_PARAM)
+            val shortenedUrl = call.parameters["shortenedUrl"]
+            val fact = facade.getFactBy("$FACTS_BASE_PATH/$shortenedUrl")
+            call.respond(fact)
         }
 
         get("/redirect") {
-            call.parameters["shortenedUrl"]?.let {
-                val fact = facade.getFactBy("$FACTS_BASE_PATH/$it")
-                call.respondRedirect(fact.originalPermalink)
-            } ?: call.respond(BadRequest, INVALID_PATH_PARAM)
+            val shortenedUrl = call.parameters["shortenedUrl"]
+            val fact = facade.getFactBy("$FACTS_BASE_PATH/$shortenedUrl")
+            call.respondRedirect(fact.originalPermalink)
         }
     }
 }
