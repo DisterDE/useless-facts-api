@@ -55,11 +55,11 @@ class FactsRouteTest {
             }
         }
 
-        every { facade.getCachedFacts() } returns FACT_RESPONSES
+        every { facade.getCachedFacts() } returns FACTS
 
         client.get(FACTS_BASE_PATH).apply {
             assertEquals(HttpStatusCode.OK, status)
-            assertEquals(FACT_RESPONSES, body(typeInfo<List<Fact>>()))
+            assertEquals(FACTS, body(typeInfo<List<Fact>>()))
         }
     }
 
@@ -160,6 +160,6 @@ class FactsRouteTest {
         private const val FACT_TEXT = "text"
         private val FACT = Fact(FACT_TEXT, PERMANENT_URL)
         private val SHORTENED_URL_FACT = ShortenedUrlFact(FACT_TEXT, SHORTENED_URL)
-        private val FACT_RESPONSES = listOf(FACT)
+        private val FACTS = listOf(FACT)
     }
 }
