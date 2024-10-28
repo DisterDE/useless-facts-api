@@ -8,4 +8,6 @@ package com.github.disterde.uselessfactsapi.exception
  *
  * @param key The key for which the element was not found in the cache.
  */
-class NoElementInCacheException(key: Any) : ApiException("Element is not found in cache by $key")
+class NoElementInCacheException(
+    key: Any
+) : ApiException("Element is not found in cache by $key")

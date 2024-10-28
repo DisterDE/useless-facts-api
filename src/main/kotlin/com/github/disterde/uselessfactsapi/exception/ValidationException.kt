@@ -1,22 +1,13 @@
 package com.github.disterde.uselessfactsapi.exception
 
 /**
- * Exception thrown to indicate that validation of some input has failed.
+ * Exception thrown when a validation error occurs.
  *
- * This exception is typically used in situations where input values do not
- * meet the expected criteria. It extends [ApiException], which is a custom
- * exception for API-related errors.
+ * This exception is used to indicate that the input provided by the user
+ * does not pass the defined validation rules. It extends [ApiException],
+ * thereby making it a specific type of API-related error.
  *
- * @constructor
- * Constructs a new `ValidationException` with the specified detail message.
- *
- * @param message The detail message indicating the reason for the exception.
- *
- * @constructor
- * Constructs a new `ValidationException` with the specified detail message
- * and cause.
- *
- * @param message The detail message indicating the reason for the exception.
- * @param cause The cause of the exception, which allows chaining of exceptions.
+ * @param message The detail message explaining the validation error.
+ * @param cause The cause of the validation error.
  */
 class ValidationException(message: String, cause: Throwable) : ApiException(message, cause)

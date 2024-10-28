@@ -9,5 +9,6 @@ package com.github.disterde.uselessfactsapi.exception
  *
  * @param key The key associated with the element that is already in the cache.
  */
-class ElementAlreadyInCacheException(key: Any) :
-    ApiException("Element with key $key is already in cache")
+class ElementAlreadyInCacheException(
+    key: Any
+) : ApiException("Element with key $key is already in cache")
