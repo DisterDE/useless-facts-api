@@ -12,7 +12,7 @@ plugins {
     id("jacoco")
 }
 
-group = "com.github.disterde"
+group = "com.github.disterde.uselessfactsapi"
 version = "1.0.0"
 
 application {
