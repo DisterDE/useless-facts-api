@@ -39,6 +39,13 @@ To interact with the service, you can use tools like Postman, cURL, or other HTT
 Additionally, Swagger-UI is available
 at [http://localhost:8080/swagger](http://localhost:8080/swagger) for easy API exploration.
 
+**Warning:** Be attentive, as the API returns the full endpoint path as shortened links.
+
+When making API calls via HTTP clients,
+the full path should be specified immediately after the host.
+However, in Swagger, the path is predefined,
+so you only need to insert the unique link identifier, not the entire shortened URL.
+
 ## Authorization
 
 To access statistics, authorization is required with the credentials `admin-admin`.
