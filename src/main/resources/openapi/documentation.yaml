@@ -45,7 +45,7 @@ paths:
               schema:
                 type: "array"
                 items:
-                  $ref: "#/components/schemas/FactResponse"
+                  $ref: "#/components/schemas/Fact"
     post:
       tags:
         - "facts"
@@ -112,7 +112,7 @@ components:
       required:
         - "shortened_url"
         - "access_count"
-    FactResponse:
+    Fact:
       type: "object"
       properties:
         fact:
@@ -132,16 +132,6 @@ components:
       required:
         - "original_fact"
         - "shortened_url"
-    Fact:
-      type: "object"
-      properties:
-        text:
-          type: "string"
-        permalink:
-          type: "string"
-      required:
-        - "text"
-        - "permalink"
     ExternalApiFact:
       type: "object"
       properties:
