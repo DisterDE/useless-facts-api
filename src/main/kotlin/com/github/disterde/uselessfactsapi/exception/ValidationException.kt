@@ -19,7 +19,4 @@ package com.github.disterde.uselessfactsapi.exception
  * @param message The detail message indicating the reason for the exception.
  * @param cause The cause of the exception, which allows chaining of exceptions.
  */
-class ValidationException : ApiException {
-    constructor(message: String) : super(message)
-    constructor(message: String, cause: Throwable) : super(message, cause)
-}
+class ValidationException(message: String, cause: Throwable) : ApiException(message, cause)
