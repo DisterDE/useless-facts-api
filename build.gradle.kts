@@ -87,10 +87,24 @@ tasks.jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-                minimum = 0.9.toBigDecimal()
+                minimum = 0.99.toBigDecimal()
             }
         }
     }
+
+    classDirectories.setFrom(
+        files(
+            classDirectories.files.map {
+                fileTree(it) {
+                    exclude("**/domain/**")
+                    exclude("**/plugins/**")
+                    exclude("**/constants/**")
+                    exclude("**/exception/**")
+                    exclude("**/Application*")
+                }
+            }
+        )
+    )
 }
 
 tasks.check {
