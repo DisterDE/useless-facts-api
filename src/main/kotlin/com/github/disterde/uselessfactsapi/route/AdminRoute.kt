@@ -13,11 +13,10 @@ import io.ktor.server.routing.*
  *
  * @param statisticsService An instance of [StatisticsService] used to obtain statistical data.
  */
-fun Routing.adminRoute(statisticsService: StatisticsService) =
-    route("/admin") {
-        authenticate {
-            get("/statistics") {
-                call.respond(statisticsService.getStatistics())
-            }
+fun Routing.adminRoute(statisticsService: StatisticsService) = route("/admin") {
+    authenticate {
+        get("/statistics") {
+            call.respond(statisticsService.getStatistics())
         }
     }
+}
