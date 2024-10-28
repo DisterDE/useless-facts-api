@@ -1,9 +1,9 @@
-val kotlin_version: String by project
-val logback_version: String by project
-val koin_version: String by project
-val mockk_version: String by project
-val commons_lang_version: String by project
-val assertj_version: String by project
+val kotlinVersion: String by project
+val logbackVersion: String by project
+val koinVersion: String by project
+val mockkVersion: String by project
+val commonsLangVersion: String by project
+val assertjVersion: String by project
 
 plugins {
     kotlin("jvm") version "2.0.21"
@@ -41,20 +41,20 @@ dependencies {
     implementation("io.ktor:ktor-server-swagger")
 
     // Koin
-    implementation("io.insert-koin:koin-core:$koin_version")
-    implementation("io.insert-koin:koin-ktor:$koin_version")
-    implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
+    implementation("io.insert-koin:koin-core:$koinVersion")
+    implementation("io.insert-koin:koin-ktor:$koinVersion")
+    implementation("io.insert-koin:koin-logger-slf4j:$koinVersion")
 
     // Utils
-    implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation("org.apache.commons:commons-lang3:$commons_lang_version")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    implementation("org.apache.commons:commons-lang3:$commonsLangVersion")
 
     // Test
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("io.ktor:ktor-client-mock")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
-    testImplementation("io.mockk:mockk:$mockk_version")
-    testImplementation("org.assertj:assertj-core:$assertj_version")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+    testImplementation("io.mockk:mockk:$mockkVersion")
+    testImplementation("org.assertj:assertj-core:$assertjVersion")
 }
 
 kotlin {
