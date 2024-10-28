@@ -123,21 +123,43 @@ class FactsRouteTest {
         }
     }
 
-//    @Test
-//    fun testGetFactsShortenedUrlRedirect() = testApplication {
-//        application {
-//            TODO("Add the Ktor module for the test")
-//        }
-//        client.get("$FACTS_BASE_PATH/$SHORTENED_URL/redirect").apply {
-//            TODO("Please write your test here")
-//        }
-//    }
+    @Test
+    fun testGetFactsShortenedUrlRedirect() = testApplication {
+        application {
+            install(Koin) {
+                modules(module {
+                    single { facade }
+                    single { statisticsService }
+                })
+            }
+            configureSecurity()
+            configureHttp()
+            configureSerialization()
+        }
+
+        val client = createClient {
+            install(ContentNegotiation) {
+                json(json = Json {
+                    namingStrategy = JsonNamingStrategy.SnakeCase
+                })
+            }
+            followRedirects = false
+        }
+
+        coEvery { facade.getFactBy("$FACTS_BASE_PATH/$SHORTENED_URL") } returns FACT
+
+        client.get("$FACTS_BASE_PATH/$SHORTENED_URL/redirect").apply {
+            assertEquals(HttpStatusCode.Found, status)
+            assertEquals(FACT.originalPermalink, headers[HttpHeaders.Location])
+        }
+    }
 
     companion object {
         private const val SHORTENED_URL = "url"
+        private const val PERMANENT_URL = "https://test.com"
         private const val FACT_TEXT = "text"
-        private val FACT = Fact(FACT_TEXT, SHORTENED_URL)
+        private val FACT = Fact(FACT_TEXT, PERMANENT_URL)
         private val SHORTENED_URL_FACT = ShortenedUrlFact(FACT_TEXT, SHORTENED_URL)
-        private val FACT_RESPONSES = listOf(Fact(FACT_TEXT, SHORTENED_URL))
+        private val FACT_RESPONSES = listOf(FACT)
     }
 }
