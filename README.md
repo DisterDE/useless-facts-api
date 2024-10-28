@@ -1,7 +1,9 @@
 # Useless Facts API
 
 This service fetches random facts from an external API, caches them, and provides a shortened link
-to each fact. It also tracks accesses to each shortened link, gathering statistics on link usage.
+to each fact.
+
+It also tracks accesses to each shortened link, gathering statistics on link usage.
 
 ## Prerequisites
 
