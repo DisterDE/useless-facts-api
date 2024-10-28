@@ -1,10 +1,10 @@
-FROM openjdk:21-jdk AS build
+FROM gradle:jdk21 AS build
 
 WORKDIR /app
 
 COPY . .
 
-RUN ./gradlew build
+RUN gradle build
 
 FROM openjdk:21-jdk-slim
 
